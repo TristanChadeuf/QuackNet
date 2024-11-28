@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\DuckRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: DuckRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL_DUCKNAME', fields: ['email', 'duckname'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Duck implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
