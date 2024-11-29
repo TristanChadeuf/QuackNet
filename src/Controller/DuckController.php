@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/duck')]
 final class DuckController extends AbstractController
 {
+
     #[Route(name: 'app_duck_index', methods: ['GET'])]
     public function index(DuckRepository $duckRepository): Response
     {
@@ -42,13 +43,15 @@ final class DuckController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_duck_show', methods: ['GET'])]
-    public function show(Duck $duck): Response
+    #[Route('/current', name: 'app_duck_show', methods: ['GET'])]
+    public function show(): Response
     {
+        $duck = $this->getUser();
         return $this->render('duck/show.html.twig', [
             'duck' => $duck,
         ]);
     }
+
 
     #[Route('/{id}/edit', name: 'app_duck_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Duck $duck, EntityManagerInterface $entityManager): Response
@@ -59,7 +62,7 @@ final class DuckController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_duck_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_duck_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('duck/edit.html.twig', [
@@ -76,6 +79,6 @@ final class DuckController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_duck_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_quack_index', [], Response::HTTP_SEE_OTHER);
     }
 }

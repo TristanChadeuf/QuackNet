@@ -12,11 +12,8 @@ class DuckType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('duckname')
             ->add('firstname')
             ->add('lastname')
-            ->add('roles')
             ->add('password')
         ;
     }
