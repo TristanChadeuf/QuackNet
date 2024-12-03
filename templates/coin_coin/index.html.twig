@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CoinCoin index{% endblock %}
+
+{% block body %}
+    <h1>CoinCoin</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Post</th>
+                <th>DuckName</th>
+                <th>Picture</th>
+                <th>Created At</th>
+                <th>Tags</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coin_coin in coin_coins %}
+            <tr>
+                <td>{{ coin_coin.Post }}</td>
+                <td>{{ coin_coin.author.duckName }}</td>
+                <td><img src="{{ coin_coin.Picture }}" style="width: 100%"> </td>
+                <td>{{ coin_coin.createdAt ? coin_coin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ coin_coin.Tags }}</td>
+                <td>
+                    {% if is_granted("ROLE_USER", "ROLE_ADMIN ") %}
+                    <button class="btn btn-warning"><a href="{{ path('app_coin_coin_show', {'id': coin_coin.id}) }}">show</a></button>
+                        <button class="btn btn-danger"><a href="{{ path('app_coin_coin_edit', {'id': coin_coin.id}) }}">edit</a></button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        {% if is_granted("ROLE_USER", "ROLE_ADMIN ") %}
+            <button class="btn btn-primary"><a href="{{ path('app_coin_coin_new') }}">Create new</a></button>
+        {% endif %}
+{% endblock %}

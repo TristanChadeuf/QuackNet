@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CoinCoin{% endblock %}
+
+{% block body %}
+    <h1>CoinCoin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coin_coin.id }}</td>
+            </tr>
+            <tr>
+                <th>Post</th>
+                <td>{{ coin_coin.Post }}</td>
+            </tr>
+            <tr>
+                <th>DuckName</th>
+                <td>{{ coin_coin.DuckName }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ coin_coin.Picture }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ coin_coin.createdAt ? coin_coin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ coin_coin.Tags }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_coin_coin_index') }}">back to list</a>
+
+    <a href="{{ path('app_coin_coin_edit', {'id': coin_coin.id}) }}">edit</a>
+
+    {{ include('coin_coin/_delete_form.html.twig') }}
+{% endblock %}

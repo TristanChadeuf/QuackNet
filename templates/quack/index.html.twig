@@ -21,8 +21,8 @@
                 <td>{{ quack.content }}</td>
                 <td>{{ quack.createdAt ? quack.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_quack_show', {'id': quack.id}) }}">show</a>
-                    <a href="{{ path('app_quack_edit', {'id': quack.id}) }}">edit</a>
+                    <button class="btn btn-lg btn-warning"><a href="{{ path('app_quack_show', {'id': quack.id}) }}">show</a></button>
+                    <button class="btn btn-lg btn-danger"><a href="{{ path('app_quack_edit', {'id': quack.id}) }}">edit</a></button>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +32,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_quack_new') }}">Create new</a>
+    <button class="btn btn-lg btn-primary"><a href= "{{ path('app_quack_new') }}"> Create new </a></button>
 {% endblock %}

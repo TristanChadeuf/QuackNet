@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Ducks;
+use App\Entity\Duck;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -10,13 +10,13 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<Ducks>
+ * @extends ServiceEntityRepository<Duck>
  */
-class DucksRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class DuckRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ducks::class);
+        parent::__construct($registry, Duck::class);
     }
 
     /**
@@ -24,7 +24,7 @@ class DucksRepository extends ServiceEntityRepository implements PasswordUpgrade
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (!$user instanceof Ducks) {
+        if (!$user instanceof Duck) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
 
@@ -34,7 +34,7 @@ class DucksRepository extends ServiceEntityRepository implements PasswordUpgrade
     }
 
     //    /**
-    //     * @return Ducks[] Returns an array of Ducks objects
+    //     * @return Duck[] Returns an array of Duck objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -48,7 +48,7 @@ class DucksRepository extends ServiceEntityRepository implements PasswordUpgrade
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Ducks
+    //    public function findOneBySomeField($value): ?Duck
     //    {
     //        return $this->createQueryBuilder('d')
     //            ->andWhere('d.exampleField = :val')
