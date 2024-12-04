@@ -212,4 +212,5 @@ class Duck implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

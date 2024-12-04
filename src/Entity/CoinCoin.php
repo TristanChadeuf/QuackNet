@@ -4,16 +4,19 @@ namespace App\Entity;
 
 use AllowDynamicProperties;
 use App\Repository\CoinCoinRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CoinCoinRepository::class)]
+#[AllowDynamicProperties] #[ORM\Entity(repositoryClass: CoinCoinRepository::class)]
 
 class CoinCoin
 {
     public function __construct()
     {
         $this->created_at = new \DateTime();
+
     }
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,8 +25,6 @@ class CoinCoin
 
     #[ORM\Column(length: 150)]
     private ?string $Post = null;
-
-
 
     #[ORM\Column(length: 255)]
     private ?string $Picture = null;
@@ -34,12 +35,12 @@ class CoinCoin
     #[ORM\Column(length: 50)]
     private ?string $Tags = null;
 
+
     #[ORM\ManyToOne(inversedBy: 'coinCoins')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Duck $author = null;
 
-
-
+    //GETTER SETTER*****************************************************************************************************
     public function getId(): ?int
     {
         return $this->id;

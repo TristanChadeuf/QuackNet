@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\CoinCoin;
+use App\Entity\Duck;
 use App\Form\CoinCoinType;
+use App\Form\CommentType;
+use App\Form\DuckType;
 use App\Repository\CoinCoinRepository;
 use App\Service\UploaderQuackPicture;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +16,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/coincoin')]

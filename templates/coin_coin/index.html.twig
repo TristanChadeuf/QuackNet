@@ -21,15 +21,20 @@
             <tr>
                 <td>{{ coin_coin.Post }}</td>
                 <td>{{ coin_coin.author.duckName }}</td>
-                <td><img src="{{ coin_coin.Picture }}" style="width: 100%"> </td>
+                <td><img src="{{ coin_coin.Picture }}" style="width: 100%"></td>
                 <td>{{ coin_coin.createdAt ? coin_coin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ coin_coin.Tags }}</td>
                 <td>
-                    {% if is_granted("ROLE_USER", "ROLE_ADMIN ") %}
+                    {% if is_granted("ROLE_USER","ROLE_ADMIN") %}
                     <button class="btn btn-warning"><a href="{{ path('app_coin_coin_show', {'id': coin_coin.id}) }}">show</a></button>
+                    {% endif %}
+
+                        {% if is_granted("ROLE_ADMIN") %}
                         <button class="btn btn-danger"><a href="{{ path('app_coin_coin_edit', {'id': coin_coin.id}) }}">edit</a></button>
                     {% endif %}
+
                 </td>
+
             </tr>
         {% else %}
             <tr>
